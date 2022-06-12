@@ -3,6 +3,7 @@
 #:import toast kivymd.toast.toast
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 
+#New
 
 
 Screen:
@@ -46,7 +47,7 @@ Screen:
                     widget_style: "ios"
                     pos_hint: {'center_x': .5, 'center_y': .4}
                     on_active: app.switchTheme(self, self.active)
-                        
+
 
         Screen:
             name: "load"
@@ -139,7 +140,7 @@ Screen:
 
 <Boxa>:
     MDSpinner:
-        
+
 
 <ImageManager>
     path: ""
@@ -155,7 +156,7 @@ Screen:
             app.root.ids.J.current="test"
             app.barra()
             app.root.ids.s56.cols=2
-            
+
 <ImageManagerx>
     path: ""
     orientation: "vertical"
@@ -164,7 +165,7 @@ Screen:
     padding: dp(10)
     ImageButton:
         source: root.path
-        
+
 <Ja@SmartTileWithLabel>: 
 <K>:
     MDSpinner:
@@ -185,7 +186,7 @@ Screen:
             print(root.type)
             root.add_widget(app.K())
             Clock.schedule_once(lambda x:app.mex(root),2)
-        
+
 
 <Bix>:
     canvas.before:
@@ -195,7 +196,7 @@ Screen:
             width: dp(0.5)
             rectangle:
                 (self.x, self.height, self.width, dp(1))
-                 
+
     id: bottom_panel
     size_hint: 1,None
     height: dp(50) #56
@@ -212,7 +213,7 @@ Screen:
             on_release:
                 app.root.ids.J.current="cax"
                 app.barra()
-                
+
         MDTextButton:
             pos_hint: {'center_x': .2, 'center_y': .2}
             markup: True
@@ -263,7 +264,7 @@ Screen:
 
 
 
-  
+
 <Bx2>:
     canvas.before:
         Color:
@@ -272,7 +273,7 @@ Screen:
             width: dp(0.5)
             rectangle:
                 (self.x, self.height, self.width, dp(1))
-                 
+
     id: bottom_panel
     size_hint: 1,None
     height: dp(50) #56
@@ -344,7 +345,7 @@ Screen:
                 app.root.ids.J.get_screen("cax").ids.shader_widget.transformation = 'deuteranopia'
                 toast("Deuteranopia")
 
-            
+
     FloatLayout:
         MDIconButton:
             pos_hint: {'center_x': .7, 'center_y': .6}
@@ -366,7 +367,7 @@ Screen:
                 app.root.ids.J.get_screen("cax").ids.shader_widget.transformation = 'tritanopia'
                 toast("Tritanopia")
 
-            
+
     FloatLayout:
         MDIconButton:
             pos_hint: {'center_x': .9, 'center_y': .6}
@@ -384,6 +385,3 @@ Screen:
             on_release:
                 app.root.ids.J.current="theme"
                 app.barra()
-
-
-

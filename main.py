@@ -1,5 +1,4 @@
-
-
+#New
 import time
 import os
 from decimal import *
@@ -190,7 +189,7 @@ try:
 
 except Exception as e:
     print(str(e))
-    
+
 class LensFacing(Enum):
     """Values copied from CameraCharacteristics api doc, as pyjnius
     lookup doesn't work on some devices.
@@ -440,16 +439,13 @@ class PyCameraDevice(EventDispatcher):
             #ifdef GL_ES
                 precision highp float;
             #endif
-
             /* Outputs from the vertex shader */
             varying vec4 frag_color;
             varying vec2 tex_coord0;
-
             /* uniform texture samplers */
             uniform sampler2D texture0;
             uniform samplerExternalOES texture1;
             uniform vec2 resolution;
-
             void main()
             {
                 gl_FragColor = texture2D(texture1, tex_coord0);
@@ -512,7 +508,7 @@ try:
     from android.permissions import request_permission, check_permission, Permission
 except Exception as e:
     print(str(e))
-    
+
 class PermissionRequestStates(Enum):
     UNKNOWN = "UNKNOWN"
     HAVE_PERMISSION = "HAVE_PERMISSION"
@@ -647,7 +643,6 @@ M="""
 #:import MDApp kivymd.app
 #:import MDTextField kivymd.uix.textfield
 #:import toast kivymd.toast.toast
-
 Screen:
     id: BG
 ##    canvas.before:
@@ -675,8 +670,6 @@ Screen:
 ##                ScatterLayout:
 ##                    CardView2:
 ##                        pos_hint: {"center_x": .5, "center_y": .3}
-
-
                      
 <CardView2>:
     BoxLayout:
@@ -1004,7 +997,7 @@ class Kulife(MDApp):
         f=app.root.children
         t=f[0]
         print(t.children)
-        
+
         if str(t.children).find("Bx2")>-1 and app.root.ids.J.current=="test":
             f[0].remove_widget(f[0].children[0])
             f[0].add_widget(Bix())
@@ -1032,7 +1025,7 @@ class Kulife(MDApp):
         toast('Loading Test...')
         Clock.schedule_once(self.show_dialog, 5)
 
-    
+
     def show_dialog(self, *args):
         if not self.dialog_test:
             self.dialog_test = MDDialog(
@@ -1072,7 +1065,7 @@ class Kulife(MDApp):
         toast('Loading...')
 
         Clock.schedule_once(lambda x: self.visiontest(1), 1)
-        
+
     def visiontest(self,A):
         M = app.root.ids.rv5
         M.data = []
@@ -1130,14 +1123,14 @@ class Kulife(MDApp):
             #self.d_percentlbl.text = str(a2ToInt) + "%"
             #self.t_percentlbl.text = str(a3ToInt) + "%"
             #self.m_percentlbl.text = str(a4ToInt) + "%"
-            
+
             app.root.ids.fl.remove_widget(self.spin)
             app.root.ids.fl.remove_widget(self.spinlbl)
 
             app.root.ids.fl.add_widget(self.plbl)
             app.root.ids.fl.add_widget(self.pProgress)
             app.root.ids.fl.add_widget(self.p_percentlbl)
-    
+
             app.root.ids.fl.add_widget(self.dlbl)
             app.root.ids.fl.add_widget(self.dProgress)
             app.root.ids.fl.add_widget(self.d_percentlbl)
@@ -1152,7 +1145,7 @@ class Kulife(MDApp):
             app.root.ids.fl.add_widget(self.restart_btn)
 
             app.test = ""
-            
+
         if A==1:
             f = os.listdir("images/")
 
@@ -1231,7 +1224,7 @@ class Kulife(MDApp):
     def test00(self, n, p ,d ,t, m):
         M=app.root.ids.rv5
 
-        
+
         listOfImages=[
             {"viewclass": "I2", "source1": p, "type": "protanopia"},
             {"viewclass": "I2", "source1": d, "type": "deuteranopia"},
@@ -1269,7 +1262,7 @@ class Kulife(MDApp):
             self.anim.cancel()
             self.i = 0         
             Clock.schedule_once(lambda x: app.visiontest(3), 1)
-        
+
 
     def switchTheme(self, switchObect, switchValue):
         if switchValue:
@@ -1429,4 +1422,5 @@ class Kulife(MDApp):
         logger.info("Opening camera due to resume")
         self.restart_stream()
         ######################################################
+
 Kulife().run()
