@@ -42,6 +42,7 @@ from kivy.uix.screenmanager import ScreenManager,Screen,WipeTransition,FadeTrans
 from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.relativelayout import RelativeLayout
 from kivy.metrics import dp
 from kivymd.uix.spinner import MDSpinner
 from kivy.core.window import Window
@@ -82,7 +83,7 @@ import os
 ###################################
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.label import MDLabel
-from kivymd.uix.button import MDFlatButton, MDRoundFlatIconButton, MDRectangleFlatButton, MDFloatingActionButton, MDIconButton
+from kivymd.uix.button import MDFlatButton, MDRoundFlatIconButton, MDRectangleFlatButton, MDFloatingActionButton, MDIconButton, MDFloatingActionButtonSpeedDial
 from kivymd.uix.progressbar import MDProgressBar
 from kivy.uix.button import Button
 from kivy.animation import Animation
@@ -534,7 +535,7 @@ class ColourBlindnessSelectionButton(ColouredToggleButtonContainer):
     text = StringProperty()
     texture_size = ListProperty([0, 0])
 
-class ScreenCamera(Screen): #FloatLayout
+class ScreenCamera(FloatLayout): #FloatLayout
     buttons_visible = BooleanProperty(True)
 
     _buttons_visible_fraction = NumericProperty(1.0)
@@ -724,12 +725,6 @@ Screen:
                     root.eee(root.ids.sy_.text)
 """
 
-from kivymd.uix.bottomnavigation import MDBottomNavigationBar
-
-class Bx2(MDBottomNavigationBar):
-    pass
-class Bix(MDBottomNavigationBar):
-    pass
 
 from kivymd.uix.imagelist import SmartTileWithLabel
 class I(BoxLayout): #ColourShaderWidget
@@ -747,7 +742,7 @@ class I2(BoxLayout): #ColourShaderWidget
     #source1": N,"box_color1": [.42,.05,.6,.6],"text1
 
 #ABOUT
-class showAbout(BoxLayout):
+class RootWidget(Screen):
     pass
 
 #REFERENCE NORMAL IMAGE
@@ -805,8 +800,6 @@ class Kulife(MDApp):
         self.manager_list = []
         self.dir = os.getcwd()+"/images/"
         self.available_image_format = ['.png', '.jpg', '.jpeg', '.webp']
-        self.Bx2=None
-        self.Bix=None
         self.test=""
         Window.bind(on_keyboard=self.Android_back_click)
 
@@ -861,9 +854,14 @@ class Kulife(MDApp):
     def build(self):
         global app
         global test
-        global Bx2
-        global Bix
         self.theme_cls.theme_style = "Light"
+
+        self.data = {
+            'Normal': 'alpha-n-circle-outline',
+            'Protanopia': 'alpha-p-circle-outline',
+            'Deuteranopia': 'alpha-d-circle-outline',
+            'Tritanopia': 'alpha-t-circle-outline',
+        }
 
         self.i = 0
 
@@ -1269,6 +1267,17 @@ class Kulife(MDApp):
             self.anim.cancel()
             self.i = 0         
             Clock.schedule_once(lambda x: app.visiontest(3), 1)
+
+    def callback(self, instance):
+
+        if instance.icon == 'alpha-n-circle-outline':
+            app.root.ids.shader_widget.transformation = 'none'
+        elif instance.icon == 'alpha-p-circle-outline':
+            app.root.ids.shader_widget.transformation = 'protanopia'
+        elif instance.icon == 'alpha-d-circle-outline':
+            app.root.ids.shader_widget.transformation = 'deuteranopia'
+        elif instance.icon == 'alpha-t-circle-outline':
+            app.root.ids.shader_widget.transformation = 'tritanopia'
         
 
     def switchTheme(self, switchObect, switchValue):
